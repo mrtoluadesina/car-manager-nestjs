@@ -4,30 +4,30 @@ import { CarDto } from './car.dto';
 
 @Controller('car')
 export class CarController {
-  constructor(private carService: CarService) {}
+  constructor(private readonly carService: CarService) {}
 
   @Get()
-  public getCars() {
+  public getCars(): Promise<CarDto[]> {
     return this.carService.getCars()
   }
 
   @Post()
-  public postCar(@Body() car: CarDto) {
+  public postCar(@Body() car: CarDto): Promise<CarDto> {
     return this.carService.postCar(car)
   }
 
   @Get(':id')
-  public async getCarById(@Param('id') id: number) {
+  public getCarById(@Param('id') id: number): Promise<CarDto> {
     return this.carService.getCarById(id)
   }
 
   @Delete(':id')
-  public async deleteCarById(@Param('id') id:number) {
+  public deleteCarById(@Param('id') id:number): Promise<CarDto> {
     return this.carService.deleteCarById(id)
   }
 
   @Put(':id')
-  public async putCarById(@Param('id') id: number, @Query() query) {
+  public putCarById(@Param('id') id: number, @Query() query): Promise<CarDto> {
     const propertyName = query.property_name;
     const propertyValue = query.property_value;
     
