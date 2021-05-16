@@ -1,6 +1,11 @@
 import { Injectable, HttpException } from '@nestjs/common';
 import { CARS } from './cars.mock';
 
+import {Model} from 'mongoose';
+import {InjectModel} from '@nestjs/mongoose';
+import {ICar} from './interfaces/car.interface';
+import {CarDto} from './car.dto';
+
 @Injectable()
 export class CarService {
   private cars = CARS;
